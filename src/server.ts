@@ -1,17 +1,15 @@
-/* subir um servidor na porta 3000 usando node express e typescript   */
-
 import 'dotenv/config'
-import express, { Request, Response } from 'express'
+import './00-seed'
+import express from 'express'
 import cors from 'cors'
+import loadRoutes from './03-api/01-routes'
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
 
-app.get('/hello', (_: Request, response: Response) => {
-  response.status(200).send('Olá mundo!')
-})
+loadRoutes(app)
 
 const port = process.env.PORT
 app.listen(port, () => {
